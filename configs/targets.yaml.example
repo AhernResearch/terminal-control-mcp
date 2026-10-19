@@ -1,0 +1,33 @@
+# Reference inventory. `terminal-control-mcp init` generates a working local layout.
+# Replace documentation-only addresses and usernames before connecting.
+version: 1
+allowed_local_read_roots:
+  - ~/.config/terminal-control-mcp/uploads
+
+defaults:
+  username: operator
+  port: 22
+  credential_ref: server-default
+  known_hosts_file: ~/.config/terminal-control-mcp/known_hosts
+  connect_timeout: 10
+  allowed_write_roots:
+    - "~"
+    - /tmp/terminal-control
+
+hosts:
+  my-server:
+    host: 192.0.2.10
+  gpu-server:
+    host: 192.0.2.20
+    client_key_file: ~/.ssh/terminal-control-gpu
+
+# Optional two-node group: connect to `main` through the SSH server on `media`.
+# "media" and "main" are the supported node names.
+groups:
+  lab:
+    media:
+      host: 192.0.2.30
+    main:
+      host: 192.0.2.40
+      via: media
+      host_key_alias: lab-main

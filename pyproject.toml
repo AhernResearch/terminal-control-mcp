@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "terminal-control-mcp"
+dynamic = ["version"]
+description = "Portable SSH terminal control for MCP clients"
+license = "MIT"
+keywords = ["mcp", "ssh", "terminal", "automation"]
+classifiers = [
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "asyncssh>=2.24,<3",
+    "mcp>=1.26,<2",
+    "pyyaml>=6,<7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<9",
+    "pytest-asyncio>=1,<2",
+    "ruff>=0.12,<1",
+]
+
+[project.scripts]
+terminal-control-mcp = "terminal_control_mcp.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/terminal_control_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.hatch.version]
+path = "src/terminal_control_mcp/__init__.py"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

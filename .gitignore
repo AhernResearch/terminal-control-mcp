@@ -1,0 +1,25 @@
+# Python build and development artifacts
+.venv/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.coverage
+htmlcov/
+# Local inventory and authentication
+.env
+.env.*
+targets.yaml
+vehicles.yaml
+credentials/
+/credentials.*
+*.known_hosts
+known_hosts
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+*.bak*
